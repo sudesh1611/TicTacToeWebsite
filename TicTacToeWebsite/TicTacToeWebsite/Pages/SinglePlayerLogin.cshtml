@@ -1,0 +1,74 @@
+﻿@page
+@model TicTacToeWebsite.Pages.SinglePlayerLoginModel
+@{
+    ViewData["Title"] = "SinglePlayerLogin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="text-center">
+        <h2 style="color:cornflowerblue;"><strong>TicTacToe</strong></h2>
+        <p style="color:dodgerblue;line-height:0em;">Single Player</p>
+    </div>
+    <br />
+
+    <div>
+        
+        <form method="post" class="form-inline">
+            <div class="row">
+                <div class="form-group col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-xs-12 text-center">
+                    <label>
+                        @if (User.Identity.IsAuthenticated)
+                {
+                    <input class="form-control" type="text" asp-for="Input.PlayerName" placeholder="Enter Your Name" maxlength="15" value="@User.Identity.Name" />
+
+        }
+        else
+        {
+            <input class="form-control" type="text" autofocus asp-for="Input.PlayerName" placeholder="Enter Your Name" maxlength="15" />
+
+
+}
+                    </label>
+
+                </div>
+            </div>
+            <div class="text-center">
+                <span asp-validation-for="Input.PlayerName" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-xs-12 text-center">
+                    <h5>Difficulty:</h5>
+                    <div class="radio">
+                        <label><input type="radio" asp-for="Input.Difficulty" value="Easy" checked />Easy</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" asp-for="Input.Difficulty" value="Hard" />Hard</label>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="form-group col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-xs-12 text-center">
+                    <button type="submit" class="btn btn-default" style="color:cornflowerblue;"><strong>Next</strong></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

@@ -190,9 +190,111 @@ function computerTurn() {
                     box[i] = ' ';
                 }
             }
-            var a = AlphaBeta(-100, 100, true);
-            var index = a[0];
-            box[index] = 'X';
+
+            for (var i = 1; i < 10; i++) {
+                if (box[i] == ' ') {
+                    box[i] = 'O';
+                    var x = gameOver();
+                    if (x == -10) {
+                        box[i] = 'X';
+                        filled++;
+                        printArena(box);
+                        if (filled >= 9) {
+                            displayResult();
+                            return;
+                        }
+                        $('#turnButton').css('background-color', 'cornflowerblue');
+                        $('#turnButton').css('color', '#FFFFFF');
+                        $('#turnButton').text('Your Turn');
+                        currentPlayer = 'O';
+                        return;
+                    }
+                    box[i] = ' ';
+                }
+            }
+
+            {
+                if (box[1]=='X' && box[2]==' ' && box[3]==' ') {
+                    box[2] = 'X';
+                }
+                else if (box[1] == 'X' && box[4] == ' ' && box[7] == ' ') {
+                    box[4] = 'X';
+                }
+                else if (box[1] == 'X' && box[5] == ' ' && box[9] == ' ') {
+                    box[5] = 'X';
+                }
+                else if (box[2] == 'X' && box[1] == ' ' && box[3] == ' ') {
+                    box[1] = 'X';
+                }
+                else if (box[2] == 'X' && box[5] == ' ' && box[8] == ' ') {
+                    box[5] = 'X';
+                }
+                else if (box[3] == 'X' && box[1] == ' ' && box[2] == ' ') {
+                    box[1] = 'X';
+                }
+                else if (box[3] == 'X' && box[5] == ' ' && box[7] == ' ') {
+                    box[5] = 'X';
+                }
+                else if (box[3] == 'X' && box[6] == ' ' && box[9] == ' ') {
+                    box[6] = 'X';
+                }
+                else if (box[4] == 'X' && box[1] == ' ' && box[7] == ' ') {
+                    box[1] = 'X';
+                }
+                else if (box[4] == 'X' && box[5] == ' ' && box[6] == ' ') {
+                    box[5] = 'X';
+                }
+                else if (box[5] == 'X' && box[4] == ' ' && box[6] == ' ') {
+                    box[4] = 'X';
+                }
+                else if (box[5] == 'X' && box[2] == ' ' && box[8] == ' ') {
+                    box[2] = 'X';
+                }
+                else if (box[5] == 'X' && box[1] == ' ' && box[9] == ' ') {
+                    box[1] = 'X';
+                }
+                else if (box[5] == 'X' && box[3] == ' ' && box[7] == ' ') {
+                    box[3] = 'X';
+                }
+                else if (box[6] == 'X' && box[4] == ' ' && box[5] == ' ') {
+                    box[4] = 'X';
+                }
+                else if (box[6] == 'X' && box[3] == ' ' && box[9] == ' ') {
+                    box[3] = 'X';
+                }
+                else if (box[7] == 'X' && box[8] == ' ' && box[9] == ' ') {
+                    box[8] = 'X';
+                }
+                else if (box[7] == 'X' && box[1] == ' ' && box[4] == ' ') {
+                    box[1] = 'X';
+                }
+                else if (box[7] == 'X' && box[5] == ' ' && box[3] == ' ') {
+                    box[3] = 'X';
+                }
+                else if (box[8] == 'X' && box[2] == ' ' && box[5] == ' ') {
+                    box[2] = 'X';
+                }
+                else if (box[8] == 'X' && box[7] == ' ' && box[9] == ' ') {
+                    box[7] = 'X';
+                }
+                else if (box[9] == 'X' && box[7] == ' ' && box[8] == ' ') {
+                    box[7] = 'X';
+                }
+                else if (box[9] == 'X' && box[1] == ' ' && box[5] == ' ') {
+                    box[1] = 'X';
+                }
+                else if (box[9] == 'X' && box[3] == ' ' && box[6] == ' ') {
+                    box[3] = 'X';
+                }
+                else {
+                    for (var i = 1; i < 10; i++) {
+                        if (box[i] == ' ') {
+                            box[i] = 'X';
+                            break;
+                        }
+                    }
+                }
+            }
             filled++;
             printArena(box);
             var temp = gameOver();
@@ -234,7 +336,7 @@ function playerWon() {
     $.ajax({
         url: '/Accounts/UpdateStatsWeb',
         type: 'POST',
-        data: { 'Counts': WonCount, 'Type': "SingleHardWin" },
+        data: { 'Counts': WonCount, 'Type': "SingleEasyWin" },
         success: function (response) {
             if (response == "True") {
                 WonCount = 0;
@@ -253,7 +355,7 @@ function playerWon() {
     });
 
     $('#won').html( won);
-    $('#lost').html( lost);
+    $('#lost').html(lost);
     $('#tied').html( tied);
     $('#myModalLabel').text("Yay! We Won.");
     $('#myModalbodyText').text("You played like a champ.");
@@ -272,7 +374,7 @@ function computerWon() {
         $.ajax({
             url: '/Accounts/UpdateStatsWeb',
             type: 'POST',
-            data: { 'Counts': LostCount, 'Type':"SingleHardLoss" },
+            data: { 'Counts': LostCount, 'Type':"SingleEasyLoss" },
             success: function (response) {
                 if (response == "True") {
                     LostCount = 0;
@@ -290,7 +392,7 @@ function computerWon() {
             }
         });
 
-    $('#won').html( won);
+    $('#won').html(won);
     $('#lost').html( lost);
     $('#tied').html( tied);
     $('#myModalLabel').text("Oh! We Lost.");
@@ -310,7 +412,7 @@ function draw() {
     $.ajax({
         url: '/Accounts/UpdateStatsWeb',
         type: 'POST',
-        data: { 'Counts': TieCount, 'Type': "SingleHardTie" },
+        data: { 'Counts': TieCount, 'Type': "SingleEasyTie" },
         success: function (response) {
             if (response == "True") {
                 TieCount = 0;
@@ -328,9 +430,9 @@ function draw() {
         }
     });
 
-    $('#won').html(won);
-    $('#lost').html(lost);
-    $('#tied').html(tied);
+    $('#won').html( won);
+    $('#lost').html( lost);
+    $('#tied').html( tied);
     $('#myModalLabel').text("It's a Tie!!");
     $('#myModalbodyText').text("Tie calls for a tie breaker round.");
     $('#myModal').modal('show');
@@ -373,70 +475,6 @@ function gameOver() {
     return -1;
 }
 
-
-function AlphaBeta(alpha, beta, player) {
-
-    var x = gameOver();
-    var a = [0, 1];
-
-    if (x != -1) {
-        a[0] = -1;
-        a[1] = x;
-        return a;
-    }
-
-    if (player == true) {
-        var mx = -100;
-        for (var i = 1; i < 10; i++) {
-            if (box[i] == ' ') {
-                box[i] = 'X';
-                filled++;
-                a = AlphaBeta(alpha, beta, !(player));
-                if (mx < a[1]) {
-                    mx = a[1];
-                    var index = i;
-                    alpha = Math.max(alpha, mx);
-
-                    if (beta <= alpha) {
-                        box[i] = ' ';
-                        filled--;
-                        break;
-                    }
-                }
-                box[i] = ' ';
-                filled--;
-            }
-        }
-        a[0] = index;
-        a[1] = mx;
-        return a;
-    }
-    else {
-        var mn = 100;
-        for (var i = 1; i < 10; i++) {
-            if (box[i] == ' ') {
-                box[i] = 'O';
-                filled++;
-                a = AlphaBeta(alpha, beta, !(player));
-                if (mn > a[1]) {
-                    mn = a[1];
-                    var index = i;
-                    beta = Math.min(beta, mn);
-                    if (beta <= alpha) {
-                        box[i] = ' ';
-                        filled--;
-                        break;
-                    }
-                }
-                box[i] = ' ';
-                filled--;
-            }
-        }
-        a[0] = index;
-        a[1] = mn;
-        return a;
-    }
-}
 
 function ConnectionChanged() {
     $('#myModalLabel').text("Connection Lost");

@@ -1,0 +1,148 @@
+﻿@page
+@model TicTacToeWebsite.Pages.SinglePlayerEasyGameModel
+@{
+    ViewData["Title"] = "SinglePlayerEasyGame";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <br />
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="row">
+                <div class="col-lg-offset-3 col-lg-2 col-md-offset-3 col-md-2 col-xs-4" style="border-bottom:5px solid cornflowerblue;border-right:5px solid cornflowerblue;" onclick="clicked(1)">
+                    <img class="img-responsive center-block" src="~/images/Blank.jpg" id="zeroth" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-4" style="border-bottom:5px solid cornflowerblue;border-right:5px solid cornflowerblue;" onclick="clicked(2)">
+                    <img class="img-responsive center-block" src="~/images/Blank.jpg" id="first" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-4 " style="border-bottom:5px solid cornflowerblue;border-right:5px solid white;" onclick="clicked(3)">
+                    <img class="img-responsive center-block" src="~/images/Blank.jpg" id="second" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-offset-3 col-lg-2 col-md-offset-3 col-md-2 col-xs-4" style="border-bottom:5px solid cornflowerblue;border-right:5px solid cornflowerblue;" onclick="clicked(4)">
+                    <img class="img-responsive center-block" src="~/images/Blank.jpg" id="third" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-4" style="border-right:5px solid cornflowerblue;border-bottom:5px solid cornflowerblue;" onclick="clicked(5)">
+                    <img class="img-responsive center-block" src="~/images/Blank.jpg" id="fourth" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-4" style="border-bottom:5px solid cornflowerblue;border-right:5px solid white;" onclick="clicked(6)">
+                    <img class="img-responsive center-block" src="~/images/Blank.jpg" id="fifth" />
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-offset-3 col-lg-2 col-md-offset-3 col-md-2 col-xs-4 text-center" style="border-right:5px solid cornflowerblue;" onclick="clicked(7)">
+                    <img class="img-responsive center-block" src="~/images/Blank.jpg" id="sixth" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-4" style="border-right:5px solid cornflowerblue;" onclick="clicked(8)">
+                    <img class="img-responsive center-block" src="~/images/Blank.jpg" id="seventh" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-4" onclick="clicked(9)">
+                    <img class="img-responsive center-block" src="~/images/Blank.jpg" id="eighth" />
+                </div>
+            </div>
+            <br />
+            <div class="row" id="HideRow">
+                <div class="col-lg-2 col-md-2 col-xs-12 text-center">
+                    <div>
+                        <a class="btn btn-block" style="background-color:cornflowerblue;color:#FFFFFF;" id="turnButton"><strong>Loading...</strong></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-12 text-center">
+                    <div>
+                        <h5 style="color:cornflowerblue;"><strong>Player: </strong>@Model.inputModel.CurrentPlayerName</h5>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-12 text-center">
+                    <div>
+                        <h5 style="color:cornflowerblue;"><strong>Your Symbol: </strong>O</h5>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 text-center">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-xs-12 text-center">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-xs-6 text-right">
+                                    <h5 style="color:cornflowerblue;"><strong>Won: </strong></h5>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-xs-6 text-left">
+                                    <h5 style="color:cornflowerblue;" id="won">@Model.inputModel.Won</h5>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-12 text-center">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-xs-6 text-right">
+                                    <h5 style="color:cornflowerblue;"><strong>Lost: </strong></h5>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-xs-6 text-left">
+                                    <h5 style="color:cornflowerblue;" id="lost">@Model.inputModel.Lost</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-12 text-center">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-xs-6 text-right">
+                                    <h5 style="color:cornflowerblue;"><strong>Tied: </strong></h5>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-xs-6 text-left">
+                                    <h5 style="color:cornflowerblue;" id="tied">@Model.inputModel.Tie</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-md-1 text-center col-xs-12">
+                    <a class="btn btn-block" id="quitButton" style="color:cornflowerblue;" asp-page="/Index"><strong>Quit</strong></a>
+                </div>
+            </div>
+            <div hidden class="row" id="ShowRow">
+                <div class="col-lg-4 col-md-4 col-xs-12 text-center">
+                    <button class="btn btn-lg btn-default" style="color:cornflowerblue;" onclick="resetGame()"><strong>Play Again</strong></button>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 text-center">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-xs-12 text-center">
+                            <h5 style="color:cornflowerblue;" id="wond"></h5>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-12 text-center">
+                            <h5 style="color:cornflowerblue;" id="lostd"></h5>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-12 text-center">
+                            <h5 style="color:cornflowerblue;" id="tiedd"></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 text-center">
+                    <a asp-page="/Index" class="btn btn-lg btn-default" style="color:cornflowerblue;"><strong>Exit</strong></a>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                        <h4 class="modal-title" id="myModalLabel" style="color:cornflowerblue;"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="myModalbodyText" style="color:cornflowerblue;"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-default" data-dismiss="modal" style="color:cornflowerblue;">Okay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section scripts{
+    <script src="~/js/SinglePlayerEasy.js"></script>
+}
+
+

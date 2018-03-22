@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="TicTacToe - Online multiplayer game">
     <link href="~/images/logo.png" rel="shortcut icon" type="image/x-icon" />
-    <title>TicTacToe | Home</title>
+    <title>TicTacToe | @ViewBag.Title</title>
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
@@ -33,12 +33,20 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:cornflowerblue;font-size:1.3em;"><strong>More</strong><span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li class="text-center"><a href="sadf" style="color:cornflowerblue;">Download For Android</a></li>
-                        </ul>
-                    </li>
+                    <li><a style="color:cornflowerblue;font-size:1.3em;" asp-page="/Downloads"><strong>Downloads</strong></a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a style="color:cornflowerblue;font-size:1.3em;"><strong>@User.Identity.Name</strong></a></li>
+                        <li><a style="color:cornflowerblue;font-size:1.3em;" asp-controller="Accounts" asp-action="LogoutWeb"><strong>Log Out</strong></a></li>
+
+                    }
+                    else
+                    {
+                        <li><a style="color:cornflowerblue;font-size:1.3em;" asp-page="/Login"><strong>Log In</strong></a></li>
+                        <li><a style="color:cornflowerblue;font-size:1.3em;" asp-page="/Signup"><strong>Sign Up</strong></a></li>
+                    }
+
+
                 </ul>
             </div>
         </div>

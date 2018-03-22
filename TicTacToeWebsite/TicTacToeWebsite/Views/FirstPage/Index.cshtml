@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="text-center">
+        <h2 style="color:cornflowerblue;"><strong>TicTacToe</strong></h2>
+        <p style="color:dodgerblue;line-height:0em;">Two Players</p>
+    </div>
+    <br />
+
+    <div>
+        <form asp-controller="FirstPage" asp-action="Index" method="post" class="form-inline">
+            <div class="row">
+                <div class="form-group col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-xs-12 text-center">
+                    <label>
+                        <input class="form-control" type="text" autofocus name="PlayerName" placeholder="Enter Your Name" maxlength="15" value="@ViewData["CurrentPlayerName"]"/>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-xs-12 text-center">
+                    <span style="color:cornflowerblue;">@ViewData["Warning"]</span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-xs-12 text-center">
+                    <button type="submit" class="btn btn-default" style="color:cornflowerblue;"><strong>Next</strong></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-xs-12 text-center">
+            <p id="onlinePlayers" style="color:cornflowerblue;"></p>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+<br />
+<br />
+<br />
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            callPlayers();
+        });
+        var myID = "Sudesh";
+        function callPlayers()
+        {
+            $.ajax(
+            {
+                url: '/FirstPage/OnlinePlayers',
+                type: 'POST',
+                data: { 'id': myID },
+                success: function (response) {
+                    $('#onlinePlayers').text("Online space is void");
+                    if (response == 'noplayers') {
+                        setTimeout(function () {
+                            callPlayers();
+                        }, 2000);
+
+                    }
+                    else
+                    {
+                        $('#onlinePlayers').text(response + " is online");
+                        setTimeout(function () {
+                            callPlayers();
+                        }, 2000);
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+    </script>
+}

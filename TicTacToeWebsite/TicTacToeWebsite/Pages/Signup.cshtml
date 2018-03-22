@@ -1,0 +1,51 @@
+﻿@page
+@model TicTacToeWebsite.Pages.SignupModel
+@{
+    ViewData["Title"] = "Signup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br />
+<div>    <h3 style="color:cornflowerblue;"><strong>Sign Up</strong></h3></div><br />
+<div>
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="InputUser.FullName" style="color:cornflowerblue;font-size:1.4em;">Name: <span style="color:darkgray;font-size:0.7em;">(Max Length: 15)</span></label>
+            <input type="text" class="form-control"  asp-for="InputUser.FullName" maxlength="15" autofocus>
+            <span asp-validation-for="InputUser.FullName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="InputUser.UserName" style="color:cornflowerblue;font-size:1.4em;">Username: <span style="color:darkgray;font-size:0.7em;">(Max Length: 15)</span></label>
+            <input type="text" class="form-control" asp-for="InputUser.UserName" maxlength="15">
+            <span asp-validation-for="InputUser.UserName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="InputUser.EmailID" style="color:cornflowerblue;font-size:1.4em;">Email address:</label>
+            <input type="email" class="form-control" aria-describedby="emailHelp"  asp-for="InputUser.EmailID">
+            <span asp-validation-for="InputUser.EmailID" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="InputUser.Password" style="color:cornflowerblue;font-size:1.4em;">Password: <span style="color:darkgray;font-size:0.7em;">(Max Length: 15)</span></label>
+            <input type="password" class="form-control" asp-for="InputUser.Password" maxlength="15">
+            <span asp-validation-for="InputUser.Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="InputUser.ConfirmPassword" style="color:cornflowerblue;font-size:1.4em;">Confirm Password:</label>
+            <input type="password" class="form-control"  asp-for="InputUser.ConfirmPassword" maxlength="15">
+            <span asp-validation-for="InputUser.ConfirmPassword" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-default">Sign Up</button>
+    </form>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
