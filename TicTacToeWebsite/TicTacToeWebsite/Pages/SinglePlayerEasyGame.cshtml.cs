@@ -43,9 +43,9 @@ namespace TicTacToeWebsite.Pages
                 if (user != null)
                 {
                     inputModel.CurrentPlayerName = user.UserName;
-                    inputModel.Won = user.SingleHardWins.ToString();
-                    inputModel.Tie = user.SingleHardTies.ToString();
-                    inputModel.Lost = user.SingleHardLoses.ToString();
+                    inputModel.Won = user.SingleEasyWins.ToString();
+                    inputModel.Tie = user.SingleEasyTies.ToString();
+                    inputModel.Lost = user.SingleEasyLoses.ToString();
                 }
             }
             else if (String.IsNullOrEmpty(PlayerName))
