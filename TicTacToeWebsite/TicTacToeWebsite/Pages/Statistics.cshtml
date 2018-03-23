@@ -1,0 +1,39 @@
+﻿@page
+@model TicTacToeWebsite.Pages.StatisticsModel
+@{
+    ViewData["Title"] = "Statistics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div class="text-center">
+    <h2 style="color:cornflowerblue; font-weight:bold;">@Model.inputModel.FullName</h2>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
+            <span style="color:darkgray;font-weight:normal;">@Model.inputModel.UserName | @Model.inputModel.EmailID</span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+    </div>
+</div>
+<br /><br />
+<div class="text-center">
+    <h4 style=" font-weight:bold;">Game Statistics</h4>
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <h6 style="color:gray;  font-weight:bold;">SinglePlayer - Easy</h6>
+            <h6 style="color:gray;">Won:<span>@Model.inputModel.SingleEasyWins</span> | Lost:<span>@Model.inputModel.SingleEasyLoses</span> | Tied:<span>@Model.inputModel.SingleEasyTies</span></h6>
+        </div>
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <h6 style="color:gray;  font-weight:bold;">SinglePlayer - Hard</h6>
+            <h6 style="color:gray;">Won:<span>@Model.inputModel.SingleHardWins</span> | Lost:<span>@Model.inputModel.SingleHardLoses</span> | Tied:<span>@Model.inputModel.SingleHardTies</span></h6>
+        </div>
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <h6 style="color:gray;  font-weight:bold;">Multiplayer</h6>
+            <h6 style="color:gray;">Won:<span>@Model.inputModel.DoubleWins</span> | Lost:<span>@Model.inputModel.DoubleLoses</span> | Tied:<span>@Model.inputModel.DoubleTies</span></h6>
+        </div>
+    </div>
+</div>
+<br /><br /><br />
+      <div class="text-center">
+          <a asp-page="/DeActivateAccount" class="btn btn-default btn-group-lg" style="color:darkgray;font-weight:bold;">Deactivate Account</a>
+      </div>

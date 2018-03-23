@@ -1,0 +1,60 @@
+﻿@page
+@model TicTacToeWebsite.Pages.DeActivateAccountModel
+@{
+    ViewData["Title"] = "DeActivateAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="text-center">
+        <h2 style="color:cornflowerblue;"><strong>TicTacToe</strong></h2>
+        <p style="color:dodgerblue;line-height:0em;">Deactivate Account</p>
+    </div>
+    <br />
+
+    <div>
+        <form method="post" class="form-inline">
+            
+            <div class="row">
+                <div class="form-group col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-xs-12 text-center">
+                    <label>
+                        <input class="form-control" type="text" autofocus  placeholder="Confirm Password" maxlength="15" asp-for="Password" />
+                    </label>
+
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger text-left" style="color:cornflowerblue;"></div>    
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-xs-12 text-center">
+                    <span style="color:cornflowerblue;" asp-validation-for="Password"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-xs-12 text-center">
+                    <button type="submit" class="btn btn-default" style="color:cornflowerblue;"><strong>Deactivate</strong></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-xs-12 text-center">
+            <p id="onlinePlayers" style="color:cornflowerblue;"></p>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+<br />
+<br />
+<br />
+

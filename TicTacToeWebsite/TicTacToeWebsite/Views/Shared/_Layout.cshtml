@@ -36,7 +36,7 @@
                     <li><a style="color:cornflowerblue;font-size:1.3em;" asp-page="/Downloads"><strong>Downloads</strong></a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li><a style="color:cornflowerblue;font-size:1.3em;"><strong>@User.Identity.Name</strong></a></li>
+                        <li><a style="color:cornflowerblue;font-size:1.3em;" asp-page="/Statistics"><strong>@User.Identity.Name</strong></a></li>
                         <li><a style="color:cornflowerblue;font-size:1.3em;" asp-controller="Accounts" asp-action="LogoutWeb"><strong>Log Out</strong></a></li>
 
                     }
